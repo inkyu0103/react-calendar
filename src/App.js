@@ -39,8 +39,38 @@ const App = () => {
     date: currentTime.getDate(),
   });
 
+  const goToday = () => {
+    setTime({
+      year: currentTime.getFullYear(),
+      month: currentTime.getMonth(),
+      date: currentTime.getDate(),
+      firstDay: new Date(
+        currentTime.getFullYear(),
+        currentTime.getMonth(),
+        1
+      ).getDay(),
+      lastDate: isLeapYear(currentTime.getFullYear())
+        ? leapYear[currentTime.getMonth()]
+        : normalYear[currentTime.getMonth()],
+    });
+
+    setIsSelected({
+      year: currentTime.getFullYear(),
+      month: currentTime.getMonth(),
+      date: currentTime.getDate(),
+    });
+  };
+
   const handleClickIsSelected = (year, month, date) => {
-    // 만약 현재 달과 다른 달이라면, 모양을 바꿔야함.
+    time.month !== month &&
+      setTime({
+        year,
+        month,
+        date,
+        firstDay: new Date(year, month, 1).getDay(),
+        lastDate: isLeapYear(year) ? leapYear[month] : normalYear[month],
+      });
+
     setIsSelected({ year, month, date });
   };
 
@@ -111,11 +141,15 @@ const App = () => {
   return (
     <>
       <Global styles={globalStyle} />
-      <button onClick={goPreviousMonth}>지난달</button>
-      <button onClick={goNextMonth}>다음달</button>
 
       <CalendarContainer>
-        <CalendarHeader year={time.year} month={time.month + 1} />
+        <CalendarHeader
+          year={time.year}
+          month={time.month + 1}
+          goPreviousMonth={goPreviousMonth}
+          goNextMonth={goNextMonth}
+          goToday={goToday}
+        />
         <CalendarDay days={days} />
         <CalendarBody
           renderInfo={{
@@ -133,16 +167,29 @@ const App = () => {
 };
 
 const globalStyle = css`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    width: 100%;
+    height: 100%;
+  }
+  body {
+    width: 100%;
+    height: 100%;
+    background: #f5f1e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const CalendarContainer = styled.div`
   width: 430px;
   height: 460px;
   border-radius: 10px;
-  border: 1px solid black;
 `;
 
 export default App;

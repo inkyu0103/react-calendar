@@ -1,19 +1,6 @@
 import styled from "@emotion/styled";
 import { CalendarItem } from ".";
 
-/**
- *
- * renderInfo 같은 경우는
- * {
- *    year,month,date
- * }
- *
- * today
- * {
- *  year,month,date
- * }
- * isSelected는 어떻게 하지?
- */
 export const CalendarBody = ({
   renderInfo,
   today,

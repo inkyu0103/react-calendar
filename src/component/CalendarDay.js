@@ -3,8 +3,10 @@ import styled from "@emotion/styled";
 export const CalendarDay = ({ days }) => {
   return (
     <CalendarDayContainer>
-      {days.map((day) => (
-        <CalendarDayItem key={day}>{day}</CalendarDayItem>
+      {days.map((day, idx) => (
+        <CalendarDayItem key={day} day={idx}>
+          {day}
+        </CalendarDayItem>
       ))}
     </CalendarDayContainer>
   );
@@ -21,4 +23,5 @@ const CalendarDayItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: ${({ day }) => (day ? "black" : "red")};
 `;

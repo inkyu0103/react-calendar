@@ -26,19 +26,16 @@ const CalendarItemContainer = styled.div`
 `;
 
 const CalenndarItemArea = styled.p`
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: ${({ currentMonth }) => (currentMonth ? "900" : "500")};
-  background-color: ${({ isSelected }) => isSelected && "green"};
+  background-color: ${({ isSelected, currentMonth }) =>
+    currentMonth && isSelected && "#6ad794"};
 
   &:hover {
-    background-color: ${({ isSelected }) => !isSelected && "red"};
+    background-color: ${({ isSelected }) => !isSelected && "#6ad794"};
   }
 `;
-
-// isselected가 필요하다. 선택된 상태가 무엇이니..?
-// 이번 달이 아닌 경우회색
