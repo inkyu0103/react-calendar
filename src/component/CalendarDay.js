@@ -18,10 +18,10 @@ const CalendarDayContainer = styled.div`
 `;
 
 const CalendarDayItem = styled.div`
-  width: 60px;
-  height: 60px;
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fff;
   color: ${({ day }) => (day ? "black" : "red")};
 `;

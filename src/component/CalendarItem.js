@@ -18,6 +18,7 @@ export const CalendarItem = ({
 };
 
 const CalendarItemContainer = styled.div`
+  flex-grow: 1;
   width: 60px;
   height: 60px;
   display: flex;
@@ -26,14 +27,14 @@ const CalendarItemContainer = styled.div`
 `;
 
 const CalenndarItemArea = styled.p`
-  width: 60px;
+  width: 100%;
   height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: ${({ currentMonth }) => (currentMonth ? "900" : "500")};
   background-color: ${({ isSelected, currentMonth }) =>
-    currentMonth && isSelected && "#6ad794"};
+    isSelected ? "#6ad794" : currentMonth ? "#fff" : "#E8E8E8"};
 
   &:hover {
     background-color: ${({ isSelected }) => !isSelected && "#6ad794"};

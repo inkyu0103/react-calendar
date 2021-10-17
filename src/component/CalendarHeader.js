@@ -13,53 +13,54 @@ export const CalendarHeader = ({
 }) => {
   return (
     <CalendarHeaderContainer>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
-        <CalendarButton
-          width={"16px"}
-          height={"16px"}
-          image={back}
-          handleClick={goPreviousMonth}
-        />
-
-        <CalendarHeaderTimeWrapper>
-          {`${year}년 ${month}월`}
-        </CalendarHeaderTimeWrapper>
-        <CalendarButton
-          width={"16px"}
-          height={"16px"}
-          image={next}
-          handleClick={goNextMonth}
-        />
-      </div>
       <CalendarButton
         width={"16px"}
         height={"16px"}
-        image={replay}
-        handleClick={goToday}
+        image={back}
+        handleClick={goPreviousMonth}
       />
+
+      <CalendarHeaderTimeWrapper>
+        {`${year}년 ${month}월`}
+      </CalendarHeaderTimeWrapper>
+      <CalendarButton
+        width={"16px"}
+        height={"16px"}
+        image={next}
+        handleClick={goNextMonth}
+      />
+      <GoTodayContainer>
+        <CalendarButton
+          width={"16px"}
+          height={"16px"}
+          image={replay}
+          handleClick={goToday}
+        />
+      </GoTodayContainer>
     </CalendarHeaderContainer>
   );
 };
 
 const CalendarHeaderContainer = styled.header`
-  width: 100%;
-  height: 30px;
+  position: relative;
   display: flex;
-  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+  justify-content: space-around;
   align-items: center;
-  border: 1px solid green;
   background: #6ad794;
 `;
 
 const CalendarHeaderTimeWrapper = styled.div`
   font-size: 20px;
+  font-weight: 900;
+  color: #fff;
+`;
+
+const GoTodayContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 /**

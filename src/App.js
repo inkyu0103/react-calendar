@@ -189,6 +189,9 @@ const globalStyle = css`
 const CalendarContainer = styled.div`
   width: 430px;
   height: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   border-radius: 10px;
 `;
 
