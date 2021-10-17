@@ -3,6 +3,8 @@ import { CalendarItem } from ".";
 
 export const CalendarBody = ({
   renderDateTarget,
+  renderMonthTarget,
+  renderYaarTarget,
   isSelected,
   handleIsSelected,
 }) => {
@@ -12,7 +14,7 @@ export const CalendarBody = ({
         <CalendarItem
           key={[year, month, date]}
           renderValue={{ year, month, date }}
-          currentMonth={month === isSelected.month}
+          currentMonth={month === renderMonthTarget}
           isSelected={
             year === isSelected.year &&
             month === isSelected.month &&

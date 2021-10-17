@@ -17,12 +17,6 @@ const isLeapYear = (year) => {
 };
 
 const App = () => {
-  const [isSelected, setIsSelected] = useState({
-    year: currentTime.getFullYear(),
-    month: currentTime.getMonth(),
-    date: currentTime.getDate(),
-  });
-
   const [time, setTime] = useState({
     year: currentTime.getFullYear(),
     month: currentTime.getMonth(),
@@ -54,12 +48,6 @@ const App = () => {
         ? leapYear[currentTime.getMonth()]
         : normalYear[currentTime.getMonth()],
     });
-
-    setIsSelected({
-      year: currentTime.getFullYear(),
-      month: currentTime.getMonth(),
-      date: currentTime.getDate(),
-    });
   };
 
   /**
@@ -70,16 +58,18 @@ const App = () => {
    * @returns year,month,date를 받아, 해당하는 날짜로 넘어가고, 그 날짜를 선택한 것으로 표시합니다.
    */
   const handleIsSelected = (year, month, date) => {
-    time.month !== month &&
-      setTime({
-        year,
-        month,
-        date,
-        firstDay: new Date(year, month, 1).getDay(),
-        lastDate: isLeapYear(year) ? leapYear[month] : normalYear[month],
-      });
-
-    setIsSelected({ year, month, date });
+    time.month !== month
+      ? setTime({
+          year,
+          month,
+          date,
+          firstDay: new Date(year, month, 1).getDay(),
+          lastDate: isLeapYear(year) ? leapYear[month] : normalYear[month],
+        })
+      : setTime({
+          ...time,
+          date,
+        });
   };
 
   /**
@@ -90,7 +80,12 @@ const App = () => {
     setTime({
       year: nextMonth.getFullYear(),
       month: nextMonth.getMonth(),
-      date: nextMonth.getDate(),
+      date:
+        time.date > normalYear[nextMonth.getMonth()]
+          ? isLeapYear(nextMonth.getFullYear())
+            ? leapYear[nextMonth.getMonth()]
+            : normalYear[nextMonth.getMonth()]
+          : time.date,
       firstDay: new Date(
         nextMonth.getFullYear(),
         nextMonth.getMonth(),
@@ -102,23 +97,34 @@ const App = () => {
     });
   };
 
+  //focus 가 어떻게 변하나?
+
+  // nextMonth같은 경우는 현재 time이 다음달의 마지막 보다 큰 경우가 문제됨.
+
+  // previous같은 경우는  현재 30일인데 지난 달이 28일밖에 없는 경우
+
   /**
    * @returns 이전달 달력을 렌더링합니다.
    */
   const goPreviousMonth = () => {
-    const nextMonth = new Date(time.year, time.month, 0);
+    const previousMonth = new Date(time.year, time.month, 0);
     setTime({
-      year: nextMonth.getFullYear(),
-      month: nextMonth.getMonth(),
-      date: nextMonth.getDate(),
+      year: previousMonth.getFullYear(),
+      month: previousMonth.getMonth(),
+      date:
+        time.date > normalYear[previousMonth.getMonth()]
+          ? isLeapYear(previousMonth.getFullYear())
+            ? leapYear[previousMonth.getMonth()]
+            : normalYear[previousMonth.getMonth()]
+          : time.date,
       firstDay: new Date(
-        nextMonth.getFullYear(),
-        nextMonth.getMonth(),
+        previousMonth.getFullYear(),
+        previousMonth.getMonth(),
         1
       ).getDay(),
-      lastDate: isLeapYear(nextMonth.getFullYear())
-        ? leapYear[nextMonth.getMonth()]
-        : normalYear[nextMonth.getMonth()],
+      lastDate: isLeapYear(previousMonth.getFullYear())
+        ? leapYear[previousMonth.getMonth()]
+        : normalYear[previousMonth.getMonth()],
     });
   };
 
@@ -185,7 +191,9 @@ const App = () => {
         <CalendarDay days={days} />
         <CalendarBody
           renderDateTarget={makeDateArray()}
-          isSelected={isSelected}
+          renderYearTarget={time.year}
+          renderMonthTarget={time.month}
+          isSelected={{ year: time.year, month: time.month, date: time.date }}
           handleIsSelected={handleIsSelected}
         />
       </CalendarContainer>
