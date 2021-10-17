@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/react-calendar/static/js/main.cb15ca18.chunk.js",
-    "main.js.map": "/react-calendar/static/js/main.cb15ca18.chunk.js.map",
+    "main.js": "/react-calendar/static/js/main.e12cba43.chunk.js",
+    "main.js.map": "/react-calendar/static/js/main.e12cba43.chunk.js.map",
     "runtime-main.js": "/react-calendar/static/js/runtime-main.491c7610.js",
     "runtime-main.js.map": "/react-calendar/static/js/runtime-main.491c7610.js.map",
-    "static/js/2.b9e08f0c.chunk.js": "/react-calendar/static/js/2.b9e08f0c.chunk.js",
-    "static/js/2.b9e08f0c.chunk.js.map": "/react-calendar/static/js/2.b9e08f0c.chunk.js.map",
+    "static/js/2.bd81549c.chunk.js": "/react-calendar/static/js/2.bd81549c.chunk.js",
+    "static/js/2.bd81549c.chunk.js.map": "/react-calendar/static/js/2.bd81549c.chunk.js.map",
     "index.html": "/react-calendar/index.html",
-    "static/js/2.b9e08f0c.chunk.js.LICENSE.txt": "/react-calendar/static/js/2.b9e08f0c.chunk.js.LICENSE.txt",
+    "static/js/2.bd81549c.chunk.js.LICENSE.txt": "/react-calendar/static/js/2.bd81549c.chunk.js.LICENSE.txt",
     "static/media/replay.82605c48.png": "/react-calendar/static/media/replay.82605c48.png"
   },
   "entrypoints": [
     "static/js/runtime-main.491c7610.js",
-    "static/js/2.b9e08f0c.chunk.js",
-    "static/js/main.cb15ca18.chunk.js"
+    "static/js/2.bd81549c.chunk.js",
+    "static/js/main.e12cba43.chunk.js"
   ]
 }
