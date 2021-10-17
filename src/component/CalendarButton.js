@@ -4,7 +4,6 @@ export const CalendarButton = ({
   width,
   height,
   image = null,
-  text = null,
   handleClick,
 }) => {
   return (
@@ -13,9 +12,7 @@ export const CalendarButton = ({
       height={height}
       image={image}
       onClick={handleClick}
-    >
-      {text}
-    </CalendarButtonContainer>
+    />
   );
 };
 

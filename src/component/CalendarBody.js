@@ -2,25 +2,23 @@ import styled from "@emotion/styled";
 import { CalendarItem } from ".";
 
 export const CalendarBody = ({
-  renderInfo,
-  today,
-  currentMonth,
+  renderDateTarget,
   isSelected,
-  handleClickIsSelected,
+  handleIsSelected,
 }) => {
   return (
     <CalendarBodyContainer>
-      {renderInfo.dates.map(({ year, month, date }) => (
+      {renderDateTarget.map(({ year, month, date }) => (
         <CalendarItem
           key={[year, month, date]}
-          value={{ year, month, date }}
-          currentMonth={month === renderInfo.month}
+          renderValue={{ year, month, date }}
+          currentMonth={month === isSelected.month}
           isSelected={
             year === isSelected.year &&
             month === isSelected.month &&
             date === isSelected.date
           }
-          handleClickIsSelected={handleClickIsSelected}
+          handleIsSelected={handleIsSelected}
         />
       ))}
     </CalendarBodyContainer>
@@ -31,7 +29,4 @@ const CalendarBodyContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-`;
-const CalendarBodyWeekWrapper = styled.div`
-  width: 100%;
 `;

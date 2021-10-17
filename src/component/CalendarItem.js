@@ -1,17 +1,20 @@
 import styled from "@emotion/styled";
+import { COLOR_MAP } from "../Color";
 
 export const CalendarItem = ({
-  value,
+  renderValue,
   currentMonth,
   isSelected,
-  handleClickIsSelected,
+  handleIsSelected,
 }) => {
   return (
     <CalendarItemContainer
-      onClick={() => handleClickIsSelected(value.year, value.month, value.date)}
+      onClick={() =>
+        handleIsSelected(renderValue.year, renderValue.month, renderValue.date)
+      }
     >
       <CalenndarItemArea currentMonth={currentMonth} isSelected={isSelected}>
-        {value.date}
+        {renderValue.date}
       </CalenndarItemArea>
     </CalendarItemContainer>
   );
@@ -33,10 +36,17 @@ const CalenndarItemArea = styled.p`
   justify-content: center;
   align-items: center;
   font-weight: ${({ currentMonth }) => (currentMonth ? "900" : "500")};
+  color: ${({ currentMonth }) =>
+    currentMonth ? COLOR_MAP.BLACK : COLOR_MAP.WHITE};
   background-color: ${({ isSelected, currentMonth }) =>
-    isSelected ? "#6ad794" : currentMonth ? "#fff" : "#E8E8E8"};
+    isSelected
+      ? COLOR_MAP.LIGHT_GREEN
+      : currentMonth
+      ? COLOR_MAP.WHITE
+      : COLOR_MAP.GREY};
 
   &:hover {
-    background-color: ${({ isSelected }) => !isSelected && "#6ad794"};
+    background-color: ${({ isSelected }) =>
+      !isSelected && COLOR_MAP.LIGHT_GREEN};
   }
 `;

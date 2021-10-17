@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import back from "../assets/back.png";
 import next from "../assets/next.png";
 import replay from "../assets/replay.png";
+import { COLOR_MAP } from "../Color";
 import { CalendarButton } from ".";
 
 export const CalendarHeader = ({
@@ -48,23 +49,17 @@ const CalendarHeaderContainer = styled.header`
   width: 100%;
   justify-content: space-around;
   align-items: center;
-  background: #6ad794;
+  background: ${COLOR_MAP.LIGHT_GREEN};
 `;
 
 const CalendarHeaderTimeWrapper = styled.div`
   font-size: 20px;
   font-weight: 900;
-  color: #fff;
+  color: ${COLOR_MAP.WHITE};
 `;
 
 const GoTodayContainer = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1px;
+  right: 1px;
 `;
-
-/**
- *
- * 헤더에 필요한 것은 월.일.그리고 버튼을 눌렀을 때 함수.
- *
- */

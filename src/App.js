@@ -8,6 +8,10 @@ const normalYear = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const leapYear = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const currentTime = new Date();
 
+/**
+ * @param {number} year
+ * @returns 해당 연도의 윤년 여부를 알려줍니다.
+ */
 const isLeapYear = (year) => {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 };
@@ -33,12 +37,9 @@ const App = () => {
       : normalYear[currentTime.getMonth()],
   });
 
-  const todayObject = () => ({
-    year: currentTime.getFullYear(),
-    month: currentTime.getMonth(),
-    date: currentTime.getDate(),
-  });
-
+  /**
+   * @return 버튼을 누르면 오늘 날짜로 이동하고, 오늘 날짜에 focus를 줍니다.
+   */
   const goToday = () => {
     setTime({
       year: currentTime.getFullYear(),
@@ -61,7 +62,14 @@ const App = () => {
     });
   };
 
-  const handleClickIsSelected = (year, month, date) => {
+  /**
+   * @param {number} year
+   * @param {number} month
+   * @param {number} date
+   *
+   * @returns year,month,date를 받아, 해당하는 날짜로 넘어가고, 그 날짜를 선택한 것으로 표시합니다.
+   */
+  const handleIsSelected = (year, month, date) => {
     time.month !== month &&
       setTime({
         year,
@@ -74,6 +82,9 @@ const App = () => {
     setIsSelected({ year, month, date });
   };
 
+  /**
+   * @returns 다음달 달력을 렌더링합니다.
+   */
   const goNextMonth = () => {
     const nextMonth = new Date(time.year, time.month + 1, 1);
     setTime({
@@ -90,6 +101,10 @@ const App = () => {
         : normalYear[nextMonth.getMonth()],
     });
   };
+
+  /**
+   * @returns 이전달 달력을 렌더링합니다.
+   */
   const goPreviousMonth = () => {
     const nextMonth = new Date(time.year, time.month, 0);
     setTime({
@@ -107,10 +122,27 @@ const App = () => {
     });
   };
 
+  /**
+   * @returns 렌더링 되는 날짜가 담긴 배열을 반환합니다.
+   *
+   * 렌더링 되는 날짜들을 만들기 위해서 다음과 같은 정보들이 필요합니다.
+   *
+   * 1. 현재 달이 시작하는 요일 (0~6)
+   * 2. 지난 달 Date 객체
+   * 3. 다음 달 Date 객체
+   * 렌더링 되어야 하는 일이 42개이므로 for문의 i 는 1부터 42까지 순회합니다.
+   *
+   * case 1) 현재 달의 시작하는 요일보다 i가 작은 경우 (지난 달)
+   * case 2) i가 현재 달의 날짜인 경우
+   * case 3) i가 현재 달의 날짜를 넘어간 경우
+   *
+   * 만들어진 { year : number , month : number , date : number } 객체를 result 배열에 담습니다.
+
+   *
+   */
   const makeDateArray = () => {
     const lastMonth = new Date(time.year, time.month, 0);
     const nextMonth = new Date(time.year, time.month + 1, 1);
-
     const result = [];
 
     for (let i = 1; i <= 42; i++) {
@@ -152,14 +184,9 @@ const App = () => {
         />
         <CalendarDay days={days} />
         <CalendarBody
-          renderInfo={{
-            dates: makeDateArray(),
-            year: time.year,
-            month: time.month,
-          }}
-          today={todayObject()}
+          renderDateTarget={makeDateArray()}
           isSelected={isSelected}
-          handleClickIsSelected={handleClickIsSelected}
+          handleIsSelected={handleIsSelected}
         />
       </CalendarContainer>
     </>
@@ -192,7 +219,6 @@ const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  border-radius: 10px;
 `;
 
 export default App;
