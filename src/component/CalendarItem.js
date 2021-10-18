@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { COLOR_MAP } from "../Color";
+import { COLOR_MAP, FONT_SIZE } from "../constants";
 
 export const CalendarItem = ({
   renderValue,
@@ -35,7 +35,8 @@ const CalenndarItemArea = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: ${({ currentMonth }) => (currentMonth ? "900" : "500")};
+  font-weight: ${({ currentMonth }) =>
+    currentMonth ? FONT_SIZE.BOLD : FONT_SIZE.NORMAL};
   color: ${({ currentMonth }) =>
     currentMonth ? COLOR_MAP.BLACK : COLOR_MAP.WHITE};
   background-color: ${({ isSelected, currentMonth }) =>

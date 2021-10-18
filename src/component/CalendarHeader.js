@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import back from "../assets/back.png";
 import next from "../assets/next.png";
 import replay from "../assets/replay.png";
-import { COLOR_MAP } from "../Color";
+import { COLOR_MAP } from "../constants";
 import { CalendarButton } from ".";
 
 export const CalendarHeader = ({

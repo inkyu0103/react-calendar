@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { COLOR_MAP } from "../Color";
+import { COLOR_MAP } from "../constants";
 
 export const CalendarDay = ({ days }) => {
   return (
@@ -19,10 +19,10 @@ const CalendarDayContainer = styled.div`
 `;
 
 const CalendarDayItem = styled.div`
-  flex-grow: 1;
   display: flex;
+  flex-grow: 1;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: ${COLOR_MAP.WHITE};
   color: ${({ day }) => (day ? COLOR_MAP.BLACK : COLOR_MAP.RED)};
 `;

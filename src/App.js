@@ -73,7 +73,7 @@ const App = () => {
   };
 
   /**
-   * @returns 다음달 달력을 렌더링합니다.
+   * @returns 다음달 달력을 렌더링합니다. 만약 선택된 이번 달의 날짜가 다음 달의 최대 날짜보다 큰 경우, 다음 달의 최대 날짜로 값을 업데이트 합니다.
    */
   const goNextMonth = () => {
     const nextMonth = new Date(time.year, time.month + 1, 1);
@@ -97,14 +97,8 @@ const App = () => {
     });
   };
 
-  //focus 가 어떻게 변하나?
-
-  // nextMonth같은 경우는 현재 time이 다음달의 마지막 보다 큰 경우가 문제됨.
-
-  // previous같은 경우는  현재 30일인데 지난 달이 28일밖에 없는 경우
-
   /**
-   * @returns 이전달 달력을 렌더링합니다.
+   * @returns 이전달 달력을 렌더링합니다. 만약 선택된 이번 달의 날짜가 다음 달의 최대 날짜보다 큰 경우, 다음 달의 최대 날짜로 값을 업데이트 합니다.
    */
   const goPreviousMonth = () => {
     const previousMonth = new Date(time.year, time.month, 0);
