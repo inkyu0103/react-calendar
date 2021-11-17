@@ -1,4 +1,4 @@
-# 페이워크 과제 1
+# 리액트를 이용한 캘린더 만들기
 
 **결과 : https://inkyu0103.github.io/react-calendar/**
 
